@@ -120,6 +120,18 @@ When generating a set of related images (e.g., carousel slides, icon sets):
 - For subsequent images, reference "same style as previous" and describe only what changes
 - If consistency drifts, revert and re-prompt with stronger style anchoring
 
+# Gemini Behavior Guidelines
+
+These are patterns learned from extensive use. They're not hard rules — Gemini improves over time — but flag them to the user when relevant so they can make informed decisions.
+
+**Minor tweaks often regenerate the whole image.** Requests like "move this slightly left" or "make the text a bit bigger" tend to produce a completely different image rather than a targeted edit. When the user asks for a small tweak, warn them: "Gemini isn't great at surgical edits yet — this might regenerate the whole image. Want to try, or would you rather revert and re-prompt if it doesn't work out?" Use `revert()` liberally here.
+
+**Illustrations work better as standalone assets.** When the user needs images for a design tool (Canva, Figma, etc.), offer to generate the illustration separately at 1:1 in addition to the full layout at the target aspect ratio. The 1:1 illustration imports cleanly into their design, while the full layout serves as a composition reference. Ask: "Want me to also generate the illustration on its own for easy import into your design tool?"
+
+**Real photos of people should be composited, not generated.** If the user needs a specific real person in the image (their headshot, a team photo), Gemini will always produce an AI approximation. Suggest generating the image with a placeholder area and compositing the real photo separately, rather than burning tokens trying to get Gemini to match a real face.
+
+**Exact brand colors don't translate through prompts.** Asking Gemini for "#f4d6d4" gets you "something pinkish" — close but never exact. If the user needs precise brand colors, suggest generating with Gemini's approximation first, then adjusting the colors in their design tool or via a simple color-swap script. Don't iterate endlessly trying to nail a hex code through prompting alone.
+
 # Important Reminders
 
 - Always visually inspect generated images before presenting to the user
