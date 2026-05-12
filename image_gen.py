@@ -6,6 +6,7 @@ Designed to be orchestrated by Claude Code via the image-gen skill.
 import os
 import sys
 import json
+import re
 import base64
 from datetime import datetime
 from pathlib import Path
@@ -266,24 +267,35 @@ def generate(
         )
     )
 
-    if session["history"]:
-        print(f"Continuing session (turn {session['turn'] + 1})...")
-        reconstructed_history = _reconstruct_history(session["history"])
-        chat = client.chats.create(
-            model=model,
-            config=config,
-            history=reconstructed_history
-        )
-        response = chat.send_message(content_parts)
-        session["history"].append({"role": "user", "parts": [{"text": prompt}]})
-    else:
-        print("Starting new session...")
-        chat = client.chats.create(
-            model=model,
-            config=config
-        )
-        response = chat.send_message(content_parts)
-        session["history"].append({"role": "user", "parts": [{"text": prompt}]})
+    try:
+        if session["history"]:
+            print(f"Continuing session (turn {session['turn'] + 1})...")
+            reconstructed_history = _reconstruct_history(session["history"])
+            chat = client.chats.create(
+                model=model,
+                config=config,
+                history=reconstructed_history
+            )
+            response = chat.send_message(content_parts)
+            session["history"].append({"role": "user", "parts": [{"text": prompt}]})
+        else:
+            print("Starting new session...")
+            chat = client.chats.create(
+                model=model,
+                config=config
+            )
+            response = chat.send_message(content_parts)
+            session["history"].append({"role": "user", "parts": [{"text": prompt}]})
+    except Exception as e:
+        error_msg = str(e)
+        if "aspect_ratio" in error_msg:
+            valid = re.findall(r"'(\d+:\d+)'", error_msg)
+            raise ValueError(
+                f"Invalid aspect ratio: '{aspect_ratio}'. "
+                f"Valid options: {', '.join(valid) if valid else 'see error below'}\n"
+                f"Original error: {error_msg}"
+            )
+        raise
 
     output_path = None
     response_parts = []

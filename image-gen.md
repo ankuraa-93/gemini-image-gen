@@ -44,6 +44,14 @@ print(result)
 
 Always add the toolkit to `sys.path` before importing.
 
+# Pre-Flight Check
+
+Before the first generation in a session, verify the API key is configured:
+```bash
+test -f "$TOOLKIT/.env" && grep -q "GEMINI_API_KEY=." "$TOOLKIT/.env" && echo "OK" || echo "MISSING"
+```
+If MISSING, tell the user to add their Gemini API key to `$TOOLKIT/.env` (or run `$TOOLKIT/setup.sh`). Read `$TOOLKIT/docs/setup.md` if they need help with the full environment setup.
+
 # Reference Docs
 
 Read these on-demand — NOT upfront. Only read the relevant doc when the situation calls for it:
