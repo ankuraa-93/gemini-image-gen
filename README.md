@@ -18,7 +18,7 @@ This isn't just a Gemini API wrapper. The Claude Code skill layer adds:
 ### 1. Clone and set up
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/gemini-image-gen.git ~/gemini-image-gen
+git clone https://github.com/ankuraa-93/gemini-image-gen.git ~/gemini-image-gen
 cd ~/gemini-image-gen
 ./setup.sh
 ```
