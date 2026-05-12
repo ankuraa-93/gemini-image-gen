@@ -124,7 +124,7 @@ gemini-image-gen/
 
 - Python 3.9+
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
-- A [Gemini API key](https://aistudio.google.com/apikey) (free tier available)
+- A [Gemini API key](https://aistudio.google.com/apikey) (pay-per-use — see [Gemini pricing](https://ai.google.dev/gemini-api/docs/pricing))
 
 ## Acknowledgments
 
