@@ -13,7 +13,11 @@ This isn't just a Gemini API wrapper. The Claude Code skill layer adds:
 - **Output validation** — Claude reviews generated images and suggests improvements
 - **Auto model detection** — Gemini deprecates models frequently; the toolkit auto-detects the latest available model so you never hit "model not found"
 
-## Quick Start
+## Quick Install
+
+Paste this repo's URL into Claude Code and ask it to install the skill. It will handle the rest.
+
+## Manual Setup
 
 ### 1. Clone and set up
 
