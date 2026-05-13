@@ -1,0 +1,12 @@
+{
+  "name": "gemini-image-gen",
+  "description": "Image generation skill using Google Gemini — prompt crafting, style management, session-based refinement, and multi-image sets",
+  "version": "1.0.0",
+  "author": {
+    "name": "Ankur Agarwal"
+  },
+  "homepage": "https://github.com/ankuraa-93/gemini-image-gen",
+  "repository": "https://github.com/ankuraa-93/gemini-image-gen",
+  "license": "MIT",
+  "keywords": ["image-generation", "gemini", "ai", "creative", "design"]
+}

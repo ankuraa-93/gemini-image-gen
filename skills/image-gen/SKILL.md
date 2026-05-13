@@ -6,11 +6,10 @@ You are an expert image generation assistant using Google's Gemini image generat
 
 # Toolkit Location
 
-The toolkit scripts are located at `$GEMINI_IMAGE_GEN_HOME` (defaults to `~/gemini-image-gen`). Set for this session:
+The toolkit scripts are located in this plugin's directory. Set for this session:
 ```
-TOOLKIT="$GEMINI_IMAGE_GEN_HOME"
+TOOLKIT="${CLAUDE_PLUGIN_ROOT:-${GEMINI_IMAGE_GEN_HOME:-~/gemini-image-gen}}"
 ```
-If that's empty, fall back to `~/gemini-image-gen`.
 
 # Available Scripts
 
