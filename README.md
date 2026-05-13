@@ -13,13 +13,16 @@ This isn't just a Gemini API wrapper. The Claude Code skill layer adds:
 - **Output validation** — Claude reviews generated images and suggests improvements
 - **Auto model detection** — Gemini deprecates models frequently; the toolkit auto-detects the latest available model so you never hit "model not found"
 
-## Quick Install
+## Installation
 
-Paste this repo's URL into Claude Code and ask it to install the skill. It will handle the rest.
+### 1. Install the plugin
 
-## Manual Setup
+```
+/plugin marketplace add ankuraa-93/claude-skills
+/plugin install gemini-image-gen
+```
 
-### 1. Clone and set up
+### 2. Set up the toolkit
 
 ```bash
 git clone https://github.com/ankuraa-93/gemini-image-gen.git ~/gemini-image-gen
@@ -27,39 +30,23 @@ cd ~/gemini-image-gen
 ./setup.sh
 ```
 
-The setup script installs Python dependencies, creates your `.env` file, and copies the skill to `~/.claude/commands/`.
+### 3. Add your API key
 
-### 2. Add your API key
-
-Get a free Gemini API key at [aistudio.google.com/apikey](https://aistudio.google.com/apikey), then add it to your `.env`:
+Get a free Gemini API key at [aistudio.google.com/apikey](https://aistudio.google.com/apikey), then add it to `~/gemini-image-gen/.env`:
 
 ```
 GEMINI_API_KEY=your_key_here
 ```
 
-### 3. Install the Claude Code skill
-
-The setup script does this automatically. To do it manually:
-
-```bash
-# Global (available in all projects)
-cp ~/gemini-image-gen/image-gen.md ~/.claude/commands/
-
-# Or project-specific
-cp ~/gemini-image-gen/image-gen.md .claude/commands/
-```
-
 ### 4. Use it
 
-In Claude Code, type `/image-gen` followed by what you want:
+In Claude Code, run:
 
 ```
-/image-gen a cozy coffee shop interior in watercolor style
+/gemini-image-gen:run a cozy coffee shop interior in watercolor style
 ```
 
-Or just invoke `/image-gen` and describe what you need interactively.
-
-> **Note:** The skill needs to be invoked with `/image-gen` at the start of each Claude Code session where you want to generate images. It does not persist across sessions — if you start a new session or clear the current one, type `/image-gen` again. This is by design: most sessions don't need image generation, and loading the skill only when needed saves tokens.
+Or just invoke `/gemini-image-gen:run` and describe what you need interactively.
 
 ## Examples
 
@@ -99,7 +86,7 @@ All configuration is via environment variables in `.env`:
 
 ```
 gemini-image-gen/
-├── image-gen.md          # Claude Code skill (copy to .claude/commands/)
+├── skills/run/SKILL.md   # Claude Code skill (installed via plugin)
 ├── image_gen.py          # Core generation + session management
 ├── style_extract.py      # Style extraction from reference images
 ├── get_style.py          # Style library helper
